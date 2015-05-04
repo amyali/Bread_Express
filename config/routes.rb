@@ -1,7 +1,7 @@
 BreadExpress::Application.routes.draw do
 
-  get "user/edit"
-  get "user/new"
+  # get "user/edit"
+  # get "user/new"
   # Routes for main resources
   resources :addresses
   resources :customers

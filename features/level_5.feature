@@ -27,6 +27,7 @@ Feature: Manage items
     When I go to the items page
     Then I should see "Available Items"
     And I should see "Name"
+    Then show me the page
     And I should see "Price"
     And I should see "Units"
     And I should see "Challah Bread"

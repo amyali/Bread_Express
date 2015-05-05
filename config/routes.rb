@@ -1,5 +1,9 @@
 BreadExpress::Application.routes.draw do
 
+  get "items/edit"
+  get "items/index"
+  get "items/new"
+  get "items/show"
   # get "user/edit"
   # get "user/new"
   # Routes for main resources

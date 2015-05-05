@@ -1,0 +1,37 @@
+<% if items.empty? %>
+  <p><em>There are no <%= state %> items at this time.</em></p>
+<% else %>
+<h2><%= state.capitalize %> Items</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Category</th>
+      <th>Picture</th>
+      <th>Units per item</th>
+      <th>Weight</th>
+      <th>&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% items.each do |item| %>
+      <tr>
+        <td><%= item.name %></td>
+        <td><%= item.description %></td>
+        <td><%= item.category %></td>  
+        <td><%= item.picture %></td>
+        <td><%= item.units_per_item %></td>     
+        <td><%= item.weight %></td>       
+        <td>
+          <%= link_to(edit_item_path(item), class: 'button tiny radius warning') do %>
+            &nbsp;Edit&nbsp;
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate items, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
+<% end %>
+<p>&nbsp;</p>

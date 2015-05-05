@@ -1,5 +1,13 @@
 BreadExpress::Application.routes.draw do
 
+  get "order_items/edit"
+  get "order_items/index"
+  get "order_items/new"
+  get "order_items/show"
+  get "item_prices/edit"
+  get "item_prices/index"
+  get "item_prices/new"
+  get "item_prices/show"
   get "items/edit"
   get "items/index"
   get "items/new"

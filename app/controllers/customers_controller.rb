@@ -10,12 +10,13 @@ class CustomersController < ApplicationController
   end
 
   def show
+    @customer = Customer.find(params[:id])
     @previous_orders = @customer.orders.chronological
   end
 
   def new
     @customer = Customer.new
-
+    user = @customer.build_user
   end
 
   def edit
@@ -28,6 +29,7 @@ class CustomersController < ApplicationController
   def create
     @customer = Customer.new(customer_params)
     if @customer.save
+      session[:user_id] = @customer.user.id
       redirect_to @customer, notice: "#{@customer.proper_name} was added to the system."
     else
       render action: 'new'
@@ -51,7 +53,7 @@ class CustomersController < ApplicationController
 
   def customer_params
     reset_role_param unless current_user.role? :admin
-    params.require(:customer).permit(:first_name, :last_name, :email, :phone, :active)
+    params.require(:customer).permit(:first_name, :last_name, :email, :phone, :active, user_attributes: [:id, :role, :username, :password, :password_confirmation])
   end
 
   def reset_role_param

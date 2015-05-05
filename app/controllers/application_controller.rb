@@ -7,6 +7,11 @@ class ApplicationController < ActionController::Base
     redirect_to home_path, error: "Record not found in the system."
   end
 
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:error] = "You are not authorized to complete this action"
+    redirect_to home_path
+  end
+
   private
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]

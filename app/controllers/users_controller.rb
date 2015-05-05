@@ -1,15 +1,21 @@
 class UsersController < ApplicationController
-  before_action :check_login, only: [:show, :edit, :update, :destroy]
+  # before_action :check_login
+  # before_action :set_user, only: [:show, :edit, :update, :destroy]
+  # authorize_resource
 
   def new
     @user = User.new
   end
 
+  def index
+    @users = User.alphabetical.paginate(:page => params[:page]).per_page(10)
+  end
+
   def edit
-    @user = current_user
   end
 
   def create
+    #puts user_params
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
@@ -31,6 +37,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:role, :username, :password, :password_confirmation, :acive, :user_ids => [])
+    params.require(:user).permit(:role, :username, :password, :password_confirmation, :active, :user_ids => [])
   end
 end

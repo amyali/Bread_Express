@@ -1,32 +1,20 @@
 BreadExpress::Application.routes.draw do
 
-  get "order_items/edit"
-  get "order_items/index"
-  get "order_items/new"
-  get "order_items/show"
-  get "item_prices/edit"
-  get "item_prices/index"
-  get "item_prices/new"
-  get "item_prices/show"
-  get "items/edit"
-  get "items/index"
-  get "items/new"
-  get "items/show"
 
-  # get "user/edit"
-  # get "user/new"
   # Routes for main resources
   resources :addresses
   resources :customers
   resources :orders
   
   resources :items
+  resources :item_prices
+  resources :order_items
   resources :users
   resources :sessions
   
   # Authentication routes
   get 'user/edit' => 'users#edit', as: :edit_current_user
-  get 'signup' => 'users#new', as: :signup
+  get 'signup' => 'customers#new', as: :signup
   get 'logout' => 'sessions#destroy', as: :logout
   get 'login' => 'sessions#new', as: :login
 

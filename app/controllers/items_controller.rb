@@ -1,8 +1,14 @@
 class ItemsController < ApplicationController
+  include BreadExpressHelpers::Cart
+  before_action :check_login, except:[:show, :index]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  authorize_resource
+
   def edit
   end
 
   def index
+    @items = Item.alphabetical.paginate(:page => params[:page]).per_page(10)
   	@active_items = Item.active.alphabetical.paginate(:page => params[:page]).per_page(10)
   	@inactive_items = Item.inactive.alphabetical.paginate(:page => params[:page]).per_page(10)
   end
@@ -12,6 +18,8 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @item_prices = ItemPrice.where(item_id: @item.id).paginate(:page => params[:page]).per_page(10)
+    @item_price = ItemPrice.new
   end
 
   def create

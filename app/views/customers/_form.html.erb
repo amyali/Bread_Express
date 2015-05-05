@@ -1,24 +1,26 @@
-<%= simple_form_for @customer, html: { class: 'form-horizontal' } do |f| %>
+<%= simple_nested_form_for @customer, html: { class: 'form-horizontal' } do |f| %>
   <fieldset>
-    <legend><%= controller.action_name.capitalize %> Customer</legend>
 
-    <%= f.input :first_name, input_html: {class: "avg"} %>
-    <%= f.input :last_name, input_html: {class: "avg"} %>
-    <%= f.input :phone, input_html: {class: "avg"} %>
-    <%= f.input :email, input_html: {class: "avg"} %>
+    <div class="span5">
+      <legend>New User</legend>
+      <div id="user_information">
+        <%= f.simple_fields_for :user do |user_form| %>
+          <%= user_form.input :username %>
+          <%= user_form.input :password %>
+          <%= user_form.input :passowrd_confirmation %>
+        <% end %>
+
+        <%= f.input :first_name, input_html: {class: "avg"} %>
+        <%= f.input :last_name, input_html: {class: "avg"} %>
+        <%= f.input :phone, input_html: {class: "avg"} %>
+        <%= f.input :email, input_html: {class: "avg"} %>
 
 
-
-
-
-
-
-    
-
-
-    <div class="form-actions">
+        <div class="form-actions">
       <%= f.submit nil, :class => 'button radius' %>
       <%= link_to 'Cancel', customers_path, :class => 'button alert radius' %>
     </div>
+  </div>
+</div>
   </fieldset>
 <% end %>

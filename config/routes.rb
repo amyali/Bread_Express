@@ -12,6 +12,7 @@ BreadExpress::Application.routes.draw do
   get "items/index"
   get "items/new"
   get "items/show"
+
   # get "user/edit"
   # get "user/new"
   # Routes for main resources
@@ -22,7 +23,6 @@ BreadExpress::Application.routes.draw do
   resources :items
   resources :users
   resources :sessions
-
   
   # Authentication routes
   get 'user/edit' => 'users#edit', as: :edit_current_user

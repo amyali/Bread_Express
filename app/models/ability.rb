@@ -11,21 +11,61 @@ class Ability
       can :manage, :all
 
     elsif user.role? :baker
-    	can :manage, :all
+    	can :index, Item
+      can :show, Item
+
+      #look at and update own user info
+      can :show, User do |u|
+        u.id == user.id
+      end 
+      can :update, User do |u|
+        u.id == user.id
+      end 
     elsif user.role? :shipper
-    	can :manage, :all
+    	can :index, Item
+      can :show, Item
+
+      #look at and update own user info
+      can :show, User do |u|
+        u.id == user.id
+      end 
+      can :update, User do |u|
+        u.id == user.id
+      end 
     elsif user.role? :customer
-    	can :index, User
+      can :index, Item
+      can :show, Item
 
-    	can :show, User do |u|
-    		u.id == user.id
-    	end
+      # can look at and update own user info
+      can :show, Customer do |c|
+        c.id == user.customer.id
+      end 
+      can :update, Customer do |c|
+        c.id == user.customer.id
+      end 
 
-    	can :update, User do |u|
-    		u.id == user.id
-    	end
+      can :read, Address do |a|
+        my_addresses = user.customer.addresses.map(&:id)
+        my_addresses.include? a.id
+      end
+
+      can :update, Address do |a|
+        my_addresses = user.customer.addresses.map(&:id)
+        my_addresses.include? a.id
+      end
+
+      can :create, Address
+
+      can :read, Order do |o|
+        my_orders = user.customer.orders.map(&:id)
+        my_orders.include? o.id
+      end
+
+      can :create, Order
     else
-    	can :manage, :all
+    	can :index, Item
+      can :show, Item
+      can :create, Customer
     end
 
 

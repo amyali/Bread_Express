@@ -99,7 +99,6 @@ Feature: Manage items
     And I fill in "item_units_per_item" with "1"
     And I press "Create Item"
     Then I should see "Pumpernickel was added to the system"
-    Then show me the page
     And I should see "Pumpernickel is a typically heavy, slightly sweet rye bread traditionally made with coarsely ground rye. Our pumpernickel is made with a combination of rye flour and whole rye berries."
     And I should see "Total weight: 1.2 lbs."
 

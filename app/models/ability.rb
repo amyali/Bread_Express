@@ -60,6 +60,7 @@ class Ability
         my_orders = user.customer.orders.map(&:id)
         my_orders.include? o.id
       end
+      
 
       can :create, Order
     else

@@ -2,6 +2,12 @@
   <div class="small-8 columns">
     <%= render :partial => "item_details" %>
   </div>
-</div>
 
+
+	<div class="small-4 columns">
+			<div class="panel clearfix">
+			<h5>Similar Items</h5>
+			</div>
+		</div>
+</div>
 <%= render partial: "partials/object_options", locals: {model_name: "item", object: @item} %>

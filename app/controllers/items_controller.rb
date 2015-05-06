@@ -18,10 +18,10 @@ class ItemsController < ApplicationController
   end
 
   def show
-    items = Item.alphabetical.paginate(:page => params[:page]).per_page(10)
-    # if !items.empty?
-    #   @similar_items = items.where.(category: @item.category).where.not(name: @item.name)
-    # end
+    items = Item.alphabetical
+    if !(items.empty?)
+      @similar_items = items.where(category: @item.category).where.not(name: @item.name)
+    end
     @item_prices = ItemPrice.where(item_id: @item.id).paginate(:page => params[:page]).per_page(10)
     @item_price = ItemPrice.new
   end

@@ -6,12 +6,13 @@
           <li><%= link_to "View Menu", items_path %></li>
         <% end %>
         <% if logged_in?%>
+          <% if current_user.role?(:admin) %>
+            <li><%= link_to "Customers", customers_path%></a></li>
+          <% end %>
           <% if current_user.role?(:admin) || current_user.role?(:customer) %>
             <li><%= link_to "Orders", orders_path %></a></li>
             <li><%= link_to "Addresses", addresses_path%></a></li>
-          <% end %>
-           <% if current_user.role?(:admin) %>
-            <li><%= link_to "Customers", customers_path%></a></li>
+            <li><%= link_to "Cart", cart_list_path%></a></li>
           <% end %>
         <% end %>
         <li><a class="dropdown-button" href="#!" data-activates="dropdown1">

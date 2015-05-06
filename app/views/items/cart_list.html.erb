@@ -1,0 +1,29 @@
+<div class="container">
+	<h3>Your Cart</h3>
+
+
+
+	<% if @cart_list.nil? || @cart_list.empty? %>
+		<h5>Your cart is currently empty! Go to our <%= link_to "menu", items_path %> to add items to your cart.</h5>
+	<% else %>
+		<div class="row">
+		<table class="hoverable centered">
+	  <% @cart_list.each do |item| %>
+	    <div class="card blue-grey white">
+	      <div class="card-content black-text">
+	        <span class="card-title"><%= link_to item.name, item_path(item) %> </span>
+	          <br/>
+	          <% @cart_cost %><br />
+	      </div>
+	    <div class="card-action">
+	      <%= link_to "Remove from Cart", remove_cart_path(item.id), :method => :patch%>
+	      <%= link_to "Add to Cart", add_cart_path(item.id), :method => :patch %>
+	    </div>
+	  </div>
+	  <% end %>
+	<% end %>
+</div>
+
+
+
+</div>

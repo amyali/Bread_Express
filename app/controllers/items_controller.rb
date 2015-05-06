@@ -51,13 +51,18 @@ class ItemsController < ApplicationController
   def add_to_cart
     @item = Item.find(params[:id])
     add_item_to_cart(@item.id)
-    redirect_to :back
+    redirect_to :back, notice: "#{@item.name} was added to your cart."
   end
 
-  def remote_from_cart
+  def remove_from_cart
     @item = Item.find(params[:id])
     remove_item_from_cart(item_id)
     redirect_to :back
+  end
+
+  def cart_list_and_costs
+    @cart_list = get_list_of_items_in_cart
+    @cart_cost = calculate_cart_items_cost
   end
 
   private

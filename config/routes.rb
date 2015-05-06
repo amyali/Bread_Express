@@ -32,7 +32,8 @@ BreadExpress::Application.routes.draw do
   
   # Named routes
   patch 'add_to_cart/:id' => 'items#add_to_cart', as: :add_cart
-  # patch 'remove_item/:id' => 'items#remove_item', as: :remove_cart
+  patch 'remove_item/:id' => 'items#remove_item_from_cart', as: :remove_cart
+  get 'cart_list' => 'items#cart_list', as: :cart_list
 
 
   

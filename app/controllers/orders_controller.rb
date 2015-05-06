@@ -42,6 +42,7 @@ class OrdersController < ApplicationController
   def update
     if @order.update(order_params)
       redirect_to @order, notice: "Your order was revised in the system."
+      save_each_item_in_cart(@order.order_items.to_a)
     else
       render action: 'edit'
     end

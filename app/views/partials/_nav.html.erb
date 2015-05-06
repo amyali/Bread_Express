@@ -6,9 +6,8 @@
           <li><%= link_to "View Menu", items_path %></li>
         <% end %>
         <% if logged_in?%>
-        
-          <li><%= link_to "Orders", orders_path %></a></li>
-          <% if !current_user.role?(:baker) %>
+          <% if current_user.role?(:admin) || current_user.role?(:customer) %>
+            <li><%= link_to "Orders", orders_path %></a></li>
             <li><%= link_to "Addresses", addresses_path%></a></li>
           <% end %>
            <% if current_user.role?(:admin) %>

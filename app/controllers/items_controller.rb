@@ -48,15 +48,16 @@ class ItemsController < ApplicationController
     redirect_to items_url, notice: "#{@item.name} was removed from the system"
   end
 
-  def add_to_cart(item_id)
+  def add_to_cart
     @item = Item.find(params[:id])
     add_item_to_cart(@item.id)
-
+    redirect_to :back
   end
 
-  def remote_from_cart(item_id)
+  def remote_from_cart
     @item = Item.find(params[:id])
     remove_item_from_cart(item_id)
+    redirect_to :back
   end
 
   private

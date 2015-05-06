@@ -5,12 +5,11 @@
   <table class="hoverable centered">
     <thead>
       <tr>
-        <th width="300">Name</th>
-        <th width="100">Price</th>
-        <th width="100">Units</th>
-        <% if controller.controller_name == 'orders' %>
-          <th width="100">&nbsp;</th>
-        <% end %>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Units</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
       </tr>
     </thead>
     <tbody>
@@ -19,13 +18,10 @@
           <td><%= link_to item.name, item_path(item) %></td>
           <td><%= number_to_currency item.current_price %></td>
           <td><%= item.units_per_item %> <%= item.category == 'bread' ? 'loaf' : item.category %></td>
-          <% if controller.controller_name == 'orders' %>
-            <td>
-              <%= link_to(add_to_cart_path(item.id), class: 'button tiny radius') do %>
-                &nbsp;Add to Cart&nbsp;
-              <% end %>
-            </td>
+          <% if current_user.role?(:admin) %>
+            <td><%= link_to "Edit", edit_item_path(item) %> </td>
           <% end %>
+          <td><%= link_to "Add to Cart", add_cart_path(item.id), :method => :patch %></td>
         </tr>
       <% end %>
     </tbody>

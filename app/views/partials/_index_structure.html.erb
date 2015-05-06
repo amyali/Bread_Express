@@ -16,9 +16,11 @@
 </div>
 
 <!-- Add a button for new instances of object -->
-<div class="col s12 center">
-  <%= link_to(eval("new_#{model_name}_path"), class: "btn waves-effect waves-light green") do %>
-  <!-- <i class="fa fa-plus"></i> -->
-  &nbsp;Add a New <%= model_name.capitalize %>
+<% if can? :create, :model_name %>
+  <div class="col s12 center">
+    <%= link_to(eval("new_#{model_name}_path"), class: "btn waves-effect waves-light green") do %>
+    <!-- <i class="fa fa-plus"></i> -->
+    &nbsp;Add a New <%= model_name.capitalize %>
+<% end %>
 
 <% end %>

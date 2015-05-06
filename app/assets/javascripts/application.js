@@ -26,3 +26,5 @@ $(function(){ $(document).foundation(); });
     });
   });
 
+  $(".dropdown-button").dropdown();
+

@@ -1,8 +1,8 @@
 <% if @items.active.empty? || @items.active.nil? %>
-	<h5>No active items at this time</h5>
+	<h5 class="center">No active items at this time</h5>
 <% elsif !@items.active.nil? || !@items.active.empty? %>
-  <h5>Available Items</h5>
-  <table class="table table-striped">
+  <h5 class="center">Available Items</h5>
+  <table class="hoverable centered">
     <thead>
       <tr>
         <th width="300">Name</th>

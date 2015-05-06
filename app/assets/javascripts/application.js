@@ -12,9 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery_nested_form
 //= require jquery-ui
-//= require foundation
+//= require jquery_nested_form
+//= require materialize-sprockets
 //= require_tree .
 
 $(function(){ $(document).foundation(); });

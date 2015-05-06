@@ -31,7 +31,8 @@ BreadExpress::Application.routes.draw do
   root :to => 'home#home'  
   
   # Named routes
-
+  # patch 'add_to_card/:id' => 'items#add_to_cart', as :add_cart
+  # patch 'remove_item/:id' => 'items#remove_item', as :remove_cart
 
 
   

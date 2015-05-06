@@ -49,10 +49,13 @@ class ItemsController < ApplicationController
   end
 
   def add_to_cart(item_id)
-    add_item_to_cart(item_id)
+    @item = Item.find(params[:id])
+    add_item_to_cart(@item.id)
+
   end
 
   def remote_from_cart(item_id)
+    @item = Item.find(params[:id])
     remove_item_from_cart(item_id)
   end
 

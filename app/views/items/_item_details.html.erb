@@ -20,7 +20,7 @@
 <%= render partial: "item_prices/item_prices_list", locals: {item_prices: @item_prices} %>
 <% end %>
 
-<table>
+<table class="hoverable center">
 	<tr><h4>Similar Items </h4></tr>
 	<% @similar_items.each do |item| %>
 		<tr><td><%= item.name %></td></tr>

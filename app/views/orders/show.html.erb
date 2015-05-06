@@ -9,7 +9,7 @@
 
 <% if logged_in? && current_user.role?(:customer) %>
   <div class="form-actions">
-    <%= link_to orders_path, class: 'button radius' do %>
+    <%= link_to orders_path, class: 'btn waves-effect waves-light green' do %>
       &nbsp;Return to My Orders
     <% end %>
   </div>

@@ -29,13 +29,22 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update_attributes(user_params)
-      redirect_to(@user, :notice => 'User was successfully updated.')
+      redirect_to(@user, :notice => "#{@user.username} was successfully updated.")
     else
       render :action => "edit"
     end
   end
 
+  def destroy
+    @user.destroy
+    flash[:notice] = "successfully removed #{@user.username} from Bread Express."
+    redirect_to users_url
+
   private
+  def set_user
+    @user = User.find(params[:id])
+  end
+  
   def user_params
     params.require(:user).permit(:role, :username, :password, :password_confirmation, :active, :user_ids => [])
   end

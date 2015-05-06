@@ -1,2 +1,7 @@
-<h1>Item#show</h1>
-<p>Find me in app/views/item/show.html.erb</p>
+<div class="row">
+  <div class="small-8 columns">
+    <%= render :partial => "item_details" %>
+  </div>
+</div>
+
+<%= render partial: "partials/object_options", locals: {model_name: "item", object: @item} %>

@@ -1,2 +1,23 @@
-<h1>ItemPrices#show</h1>
-<p>Find me in app/views/item_prices/show.html.erb</p>
+<p id="notice"><%= notice %></p>
+
+<p>
+	<strong>Index:</strong>
+	<%= @item_price.index %>
+</p>
+
+<p>
+	<strong>Show:</strong>
+	<%= @item_price.show %>
+</p>
+
+<p>
+	<strong>Edit:</strong>
+	<%= @item_price.edit %>
+</p>
+
+<p>
+	<strong>New:</strong>
+	<%= @item_price.new %>
+</p>
+
+<%= link_to 'Edit', edit_item_price_path(@item_price) %> | <%= link_to 'Back', item_prices_path %>

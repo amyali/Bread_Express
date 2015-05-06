@@ -1,0 +1,22 @@
+<h3><%= @item.name.capitalize %></h3>
+
+<% unless @item.picture.nil? %>
+	<p><%= image_tag @item.picture %></p>
+<% end %>
+
+<p>
+  <b>Description</b>: <%= @item.description %>
+</p>
+
+<p>
+  <%= number_to_currency @item.current_price %>
+</p>
+
+<p>
+  <b>Total weight</b>: <%= @item.weight %> lbs.
+</p>
+<% if logged_in? && current_user.role?(:admin) %>
+<%= render partial: "item_prices/item_prices_list", locals: {item_prices: @item_prices} %>
+<% end %>
+
+

@@ -18,15 +18,18 @@ class ItemsController < ApplicationController
   end
 
   def show
+    items = Item.alphabetical.paginate(:page => params[:page]).per_page(10)
+    # if !items.empty?
+    #   @similar_items = items.where.(category: @item.category).where.not(name: @item.name)
+    # end
     @item_prices = ItemPrice.where(item_id: @item.id).paginate(:page => params[:page]).per_page(10)
     @item_price = ItemPrice.new
   end
 
   def create
     @item = Item.new(item_params)
-
     if @item.save
-      redirect_to items_path, notice: "The item was added to the system."
+      redirect_to @item, notice: "#{@item.name} was added to the system."
     else
       render action: 'new'
     end
@@ -34,7 +37,7 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      redirect_to items_path, notice: "The item was revised in the system."
+      redirect_to @item, notice: "#{@item.name} was revised in the system."
     else
       render action: 'edit'
     end
@@ -42,7 +45,11 @@ class ItemsController < ApplicationController
 
   def destroy
     @item.destroy
-    redirect_to items_url, notice: "The item was removed from the system"
+    redirect_to items_url, notice: "#{@item.name} was removed from the system"
+  end
+
+  def add_to_cart(item_id)
+    add_item_to_cart(item_id)
   end
 
   private
@@ -52,6 +59,6 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :category, :units_per_item)
+    params.require(:item).permit(:name, :description, :category, :units_per_item, :weight, :picture, :active)
   end
 end

@@ -72,6 +72,7 @@ Feature: Manage items
     And I should see "$5.75"
     And I should see "Total weight: 0.9 lbs."
     And I should see "Similar Items"
+    Then show me the page
     And I should see "Apple Cherry Bread"
     And I should see "Cinnamon Swirl Bread"
     And I should not see "Price History"
@@ -105,7 +106,6 @@ Feature: Manage items
   Scenario: Creating a new item fails if not an admin
     Given a logged-in customer
     When I go to the new item page
-    Then show me the page
     Then I should see "You are not authorized to take this action"
     And I should not see "Description"
 

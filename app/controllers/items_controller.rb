@@ -52,6 +52,10 @@ class ItemsController < ApplicationController
     add_item_to_cart(item_id)
   end
 
+  def remote_from_cart(item_id)
+    remove_item_from_cart(item_id)
+  end
+
   private
 
   def set_item

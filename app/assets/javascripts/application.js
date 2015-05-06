@@ -19,3 +19,10 @@
 
 $(function(){ $(document).foundation(); });
 
+  $(function(){
+    $(function(){
+      $(".dropdown-button").dropdown({ constrain_width: false });
+      $('select').material_select();
+    });
+  });
+

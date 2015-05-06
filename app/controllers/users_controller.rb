@@ -15,8 +15,10 @@ class UsersController < ApplicationController
   end
 
   def create
-    #puts user_params
+    puts user_params
     @user = User.new(user_params)
+    puts @user.username
+    puts @user.save
     if @user.save
       session[:user_id] = @user.id
       redirect_to home_path, notice: "Thank you for signing up!"

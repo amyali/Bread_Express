@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
+  authorize_resource
   # before_action :check_login, except: [:new]
   # before_action :set_user, only: [:show, :edit, :update, :destroy]
-  authorize_resource
 
   def new
     @user = User.new

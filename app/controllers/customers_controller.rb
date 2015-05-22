@@ -1,7 +1,7 @@
 class CustomersController < ApplicationController
   include ActionView::Helpers::NumberHelper
-  before_action :check_login, except: [:new]
-  before_action :set_customer, only: [:show, :edit, :update, :destroy]
+  # before_action :check_login, except: [:new]
+  # before_action :set_customer, only: [:show, :edit, :update, :destroy]
   authorize_resource
   
   def index
@@ -52,7 +52,7 @@ class CustomersController < ApplicationController
   end
 
   def customer_params
-    reset_role_param unless current_user.role? :admin
+    reset_role_param# unless current_user.role? :admin
     params.require(:customer).permit(:first_name, :last_name, :email, :phone, :active, user_attributes: [:id, :role, :username, :password, :password_confirmation])
   end
 

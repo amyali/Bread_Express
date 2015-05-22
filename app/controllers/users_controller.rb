@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  # before_action :check_login
+  # before_action :check_login, except: [:new]
   # before_action :set_user, only: [:show, :edit, :update, :destroy]
-  # authorize_resource
+  authorize_resource
 
   def new
     @user = User.new
@@ -15,10 +15,10 @@ class UsersController < ApplicationController
   end
 
   def create
-    # puts user_params
+    puts user_params
     @user = User.new(user_params)
-    # puts @user.username
-    # puts @user.save
+    puts @user.username
+    puts @user.save
     if @user.save
       session[:user_id] = @user.id
       redirect_to home_path, notice: "Thank you for signing up!"

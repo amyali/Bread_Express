@@ -1,5 +1,5 @@
 class ItemPricesController < ApplicationController
-	before_action :check_login
+	# before_action :check_login
 	before_action :check_login, only: [:show, :edit, :update, :destroy]
 
   def edit

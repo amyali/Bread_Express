@@ -17,7 +17,7 @@
     <% end %>
     
     <% if current_user.role?(:admin) %>
-      <%= link_to(eval("#{model_name}_path(object)"), method: 'btn waves-effect waves-light red', data: {confirm: "Are you sure you want to permanently delete #{opt}"}, class: 'button radius alert') do %>
+      <%= link_to(eval("#{model_name}_path(object)"), class: 'btn waves-effect waves-light red', data: {confirm: "Are you sure you want to permanently delete #{opt}"}) do %>
         <!-- <i class="fa fa-trash-o"></i> -->
         &nbsp;<%= "Delete #{opt}" %>
       <% end %>

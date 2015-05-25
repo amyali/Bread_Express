@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   include BreadExpressHelpers::Cart
-  before_action :check_login, except:[:show, :index]
+  # before_action :check_login, except:[:show, :index]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   authorize_resource
 

@@ -91,6 +91,7 @@ Feature: Manage items
   Scenario: Creating a new item is successful
     Given a logged-in admin
     When I go to the new item page
+    Then show me the page
     Then I should see "Picture"
     When I fill in "item_name" with "Pumpernickel"
     And I fill in "item_description" with "Pumpernickel is a typically heavy, slightly sweet rye bread traditionally made with coarsely ground rye. Our pumpernickel is made with a combination of rye flour and whole rye berries."

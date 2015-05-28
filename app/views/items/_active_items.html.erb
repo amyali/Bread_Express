@@ -23,7 +23,9 @@
             <td><%= link_to "Edit", edit_item_path(item) %> </td>
             <td><%= link_to "Change Price", new_item_price_path(item) %></td>
           <% end %>
-          <td><%= link_to "Add to Cart", add_cart_path(item.id), :method => :patch %></td>
+          <% if logged_in? && (current_user.role?(:admin) || current_user.role?(:customer)) %>
+            <td><%= link_to "Add to Cart", add_cart_path(item.id), :method => :patch %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>

@@ -20,6 +20,19 @@
 				</div>
 			</div>
 			<% end %>
+		<% if logged_in? && current_user.role?(:customer) %>
+			<%= render :partial => "customer_dash" %>
+		<% end %>
+		<% if logged_in? && current_user.role?(:admin) %>
+			<%= render :partial => "admin_dash" %>
+		<% end %>
+		<% if logged_in? && current_user.role?(:shipper) %>
+			<%= render :partial => "shipper_dash" %>
+		<% end %>
+		<% if logged_in? && current_user.role?(:baker) %>
+			<%= render :partial => "baker_dash" %>
+		<% end %>
+
 		</div>
 	</div>
 

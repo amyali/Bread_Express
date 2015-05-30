@@ -1,8 +1,39 @@
+<div class="container">
+	<% if @items.active.empty? || @items.active.nil? %>
+	<h5 class="center">No active items at this time</h5>
+	<% elsif !@items.active.nil? || !@items.active.empty? %>
+  <h5 class="center">Available Items</h5>
+  <% @items.active.each do |item| %>
+  	<div class="col s4">
+  		<div class="card #689f38">
+  			<div class="card-content black-text">
+  				<span class="cart-title"><%= link_to item.name, item_path(item) %></span>
+  				<p><%= item.units_per_item %> <%= item.category == 'bread' ? 'loaf' : item.category %>
+  					<br /><%= number_to_currency item.current_price %></p>
+  				<% if logged_in? && current_user.role?(:customer) %>
+  				  <%= link_to(add_cart_path(item.id), class: 'btn waves-effect waves blue', :method => :patch) do %>
+  						&nbsp; <%= "Add to Cart" %>
+  					<% end %>
+  				<% end %>
+  				<% if logged_in? && (current_user.role?(:admin)) %>
+  					<%= link_to(add_cart_path(item.id), class: 'btn waves-effect waves blue', :method => :patch) do %>
+  						&nbsp; <%= "Add to Cart" %>
+  					<% end %>
+  					<%= link_to(customers_path, class: 'btn waves-effect waves amber') do %>
+  						&nbsp; <%= "Change Price" %>
+  					<% end %>
+  					<br /><p>[ Edit Item ]</p>
+  				<% end %>
+  			</div>
+  		</div>
+  	</div>
+  <% end %>
+  <% end %>
+</div>
+
 
 	<%= render partial: "partials/index_structure", locals: {model_name: "item", 
 	                                                         primary: "active_items", 
 	                                                         secondary: "inactive_items", 
 	                                                         sidebar: nil,
 	                                                       		image: "stacked.jpg"} %>
-
-

@@ -1,4 +1,5 @@
 <div class="container">
+	<!-- generic guest view -->
 		<% if !logged_in? %>
 		<h3>Welcome to A &amp; M Bread Express</h3>
 		<div class="row">
@@ -22,8 +23,9 @@
 				</div>
 			</div>
 		</div>
-
+	<!-- personalized view for each type of user -->
 		<% else %>
+		<!-- customers see their name, other users to their username -->
 			<h3>Welcome back, 
 				<%= current_user.customer.first_name if current_user.role?(:customer)%>
 				<%= current_user.username if !current_user.role?(:customer)%>!</h3>

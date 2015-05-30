@@ -1,40 +1,49 @@
 <div class="container">
-	<h3>Welcome to A &amp; M Bread Express</h3>
-	<div class="row">
-		<%= image_tag 'banner.jpg' %>
-	</div>
-	<div class="content">
-		<div class="col s7">
-			<p>Bread Express is a small online bakery that only produces the best. We provide a large variety of baked goods from applie pie that reminds you of you're grandmother's pies to innovative new recipes. Despite our range of products, Bread Express only provides 
-					delicious, nutritious and amazing goods everyday.</p>
-		</div>
 		<% if !logged_in? %>
+		<h3>Welcome to A &amp; M Bread Express</h3>
+		<div class="row">
+			<%= image_tag 'banner.jpg' %>
+		</div>
+		<div class="content">
+			<div class="col s7">
+				<p>Bread Express is a small online bakery that only produces the best. We provide a large variety of baked goods from applie pie that reminds you of you're grandmother's pies to innovative new recipes. Despite our range of products, Bread Express only provides 
+					delicious, nutritious and amazing goods everyday.</p>
+			</div>
+
 			<div class="col s5">
 				<div class="card #689f38 light-green darken-2">
 					<div class="card-content white-text">
 						<span class="card-title">Customers</span>
-						<p>If you are a registered user, 
+						<p>
+							If you are a registered user, 
 							  <%= link_to "click here to login", login_path %>. If you want 
 							  to create an account with us, <%= link_to "please click to register", signup_path %>.</p>
 					</div>
 				</div>
 			</div>
-			<% end %>
-		<% if logged_in? && current_user.role?(:customer) %>
-			<%= render :partial => "customer_dash" %>
-		<% end %>
-		<% if logged_in? && current_user.role?(:admin) %>
-			<%= render :partial => "admin_dash" %>
-		<% end %>
-		<% if logged_in? && current_user.role?(:shipper) %>
-			<%= render :partial => "shipper_dash" %>
-		<% end %>
-		<% if logged_in? && current_user.role?(:baker) %>
-			<%= render :partial => "baker_dash" %>
-		<% end %>
-
 		</div>
-	</div>
+
+		<% else %>
+			<h3>Welcome back, <%= current_user.customer.first_name %>!</h3>
+			<div class="row">
+				<%= image_tag 'banner.jpg' %>
+			</div>
+			<div class="content">
+				<% if logged_in? && current_user.role?(:customer) %>
+					<%= render :partial => "customer_dash" %>
+				<% end %>
+				<% if logged_in? && current_user.role?(:admin) %>
+					<%= render :partial => "admin_dash" %>
+				<% end %>
+				<% if logged_in? && current_user.role?(:baker) %>
+					<%= render :partial => "baker_dash" %>
+				<% end %>
+				<% if logged_in? && current_user.role?(:shipper) %>
+					<%= render :partial => "shipper_dash" %>
+				<% end %>
+			</div>
+		<% end %>
+</div>
 
 
 

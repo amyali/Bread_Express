@@ -1,8 +1,8 @@
 <% if addresses.empty? %>
   <p><em>There are no <%= state %> addresses at this time.</em></p>
 <% else %>
-<h2><%= state.capitalize %> Addresses</h2>
-<table class="table table-striped">
+<h4><%= state.capitalize %> Addresses</h4>
+<table class="hoverable centered">
   <thead>
     <tr>
       <% unless current_user.role?(:customer) %>

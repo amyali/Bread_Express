@@ -24,7 +24,9 @@
 		</div>
 
 		<% else %>
-			<h3>Welcome back, <%= current_user.username %>!</h3>
+			<h3>Welcome back, 
+				<%= current_user.customer.first_name if current_user.role?(:customer)%>
+				<%= current_user.username if !current_user.role?(:customer)%>!</h3>
 			<div class="row">
 				<%= image_tag 'banner.jpg' %>
 			</div>

@@ -22,7 +22,7 @@
   					<%= link_to(customers_path, class: 'btn waves-effect waves amber') do %>
   						&nbsp; <%= "Change Price" %>
   					<% end %>
-  					<br /><p>[ Edit Item ]</p>
+  					<br /><p><%= link_to "[ Edit Item ]", edit_item_path(item)%></p>
   				<% end %>
   			</div>
   		</div>

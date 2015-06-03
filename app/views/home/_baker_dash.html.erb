@@ -1,3 +1,30 @@
+<div class="col s4">
+	<div class="card #689f37 green">
+		<div class="card-content white-text">
+			<span class="card-title">My Account</span>
+			<p>
+				Username: <%= current_user.username %><br />
+				Phone: <br />
+			  Email: <br />
+			  <%= link_to "[Edit My Account]", customer_path(current_user) %>
+			  &nbsp;&nbsp;::&nbsp;&nbsp;
+			  <%= link_to "[Log out]", logout_path %>
+				</p>
+		</div>
+	</div>
+</div>
+
+
+<!-- BAKING LIST -->
+<div class="col s8">
+	<div class="card #689f37 white">
+		<div class="card-content black-text">
+			<span class="card-title black-text">Baking List</span>
+			<p>hello<br/><br/></p>
+		</div>
+	</div>
+</div>
+
 <div class="col s5">
 	<div class="card #689f37 blue">
 		<div class="cart-content white-text">

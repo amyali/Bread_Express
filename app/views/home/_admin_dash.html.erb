@@ -1,4 +1,127 @@
-<div class="col s5">
+<p>Some scroll menu for admin</p>
+
+<div class="col s4">
+	<div class="card #689f37 green">
+		<div class="card-content white-text">
+			<span class="card-title">My Account</span>
+			<p>
+				Username: <%= current_user.username %><br />
+			  <%= link_to "[Edit My Account]", customer_path(current_user) %>
+			  &nbsp;&nbsp;::&nbsp;&nbsp;
+			  <%= link_to "[Log out]", logout_path %>
+				</p>
+		</div>
+	</div>
+</div>
+
+
+<!-- ORDER INFO -->
+<div class="col s8">
+	<div class="card #689f37 white">
+		<div class="card-content black-text">
+			<span class="card-title black-text">Orders</span>
+			<p>
+				<!-- If no pending orders, say so, else show them -->
+				<% if Order.not_shipped.chronological.empty? %>
+					<i>No pending orders</i>
+				<% else %>
+					<% current_user.customer.orders.not_shipped.chronological.each do |order| %>
+						<table>
+							<thead>
+								<tr>
+									<th width="120">Date</th>
+									<th width="100">Amount</th>
+								</tr>
+							</thead>
+							<tbody>
+			          <td><%= link_to order.date.strftime('%m/%d/%y'), order_path(order) %></td>
+			          <td><%= number_to_currency order.grand_total %></td>
+			        </tbody>
+			      </table>
+			    <% end %>
+
+				<% end %><br />
+			  <%= link_to "[Edit Orders]", orders_path %>
+				</p>
+		</div>
+	</div>
+</div>
+<br/>
+
+<!-- CUSTOMER INFO -->
+<div class="col offset-s4 s8">
+	<div class="card #689f37 white">
+		<div class="card-content black-text">
+			<span class="card-title black-text">Customers</span>
+				<!-- If no active customers, say so, else show them -->
+				<% if Customer.active.alphabetical.empty? %>
+  				<i>No active customers at this time.</i>
+				<% else %>
+						<table>
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Username</th>
+									<th width="125">Phone</th>
+									<th>Email</th>
+									<th>&nbsp;</th>
+								</tr>
+							</thead>
+						<% Customer.active.alphabetical.paginate(:page => params[:page]).per_page(3).each do |customer| %>
+							<tbody>
+								<tr>
+				          <td><%= link_to customer.proper_name, customer_path(customer) %></td>
+				          <td><%= customer.user.username %></td>
+				          <td><%= number_to_phone customer.phone %></td>
+				          <td><%= customer.email %></td>
+				          <td><%= link_to "Edit", edit_customer_path(customer)%></td><br/>
+			       		</tr>
+			      <% end %>
+			        </tbody>
+			      </table>
+			      <%= will_paginate Customer.active.alphabetical.paginate(:page => params[:page]).per_page(3), previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %><br />
+				<% end %>
+			  <%= link_to "[Edit Customers]", customers_path %>
+		</div>
+	</div>
+</div>
+<br/>
+
+<!-- ADDRESSES INFO -->
+<div class="col offset-s4 s8">
+	<div class="card #689f37 white">
+		<div class="card-content black-text">
+			<span class="card-title black-text">Addresses</span>
+			<p>
+				<% if Address.active.by_customer.by_recipient.empty? %>
+  			<i>There are no active addresses at this time.</i>
+				<% else %>
+					<table>
+						<thead>
+							<tr>
+								<th>Customer</th>
+								<th>Recipient</th>
+								<th>&nbsp;</th>
+							</tr>
+						</thead>
+					<% Address.active.by_customer.by_recipient.paginate(:page => params[:page]).per_page(3).each do |address| %>
+							<tbody>
+			          <td><%= link_to address.customer.proper_name, customer_path(address.customer) %></td>
+			          <td><%= address.recipient %></td>
+			          <td><%= link_to "Edit", edit_address_path(address)%></td>
+			    <% end %>
+			        </tbody>
+			      </table>
+			    <%= will_paginate Address.active.by_customer.by_recipient.paginate(:page => params[:page]).per_page(3), previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %><br />
+				<% end %><br />
+			  <%= link_to "[Edit Addresses]", addresses_path %>
+				</p>
+		</div>
+	</div>
+</div>
+
+
+<div class="col s4">
 	<div class="card #689f37 blue">
 		<div class="cart-content white-text">
 			<span class="card-title">&nbsp;<%= current_user.role %>: <%= current_user.username %></span>

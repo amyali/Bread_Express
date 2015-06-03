@@ -1,39 +1,48 @@
-<div class="scroll-pane ui-widget ui-widget-header ui-corner-all">
-  <div class="scroll-content">
-    <div class="scroll-content-item ui-widget-header">1</div>
-    <div class="scroll-content-item ui-widget-header">2</div>
-    <div class="scroll-content-item ui-widget-header">3</div>
-    <div class="scroll-content-item ui-widget-header">4</div>
-    <div class="scroll-content-item ui-widget-header">5</div>
-    <div class="scroll-content-item ui-widget-header">6</div>
-    <div class="scroll-content-item ui-widget-header">7</div>
-    <div class="scroll-content-item ui-widget-header">8</div>
-    <div class="scroll-content-item ui-widget-header">9</div>
-    <div class="scroll-content-item ui-widget-header">10</div>
-    <div class="scroll-content-item ui-widget-header">11</div>
-    <div class="scroll-content-item ui-widget-header">12</div>
-    <div class="scroll-content-item ui-widget-header">13</div>
-    <div class="scroll-content-item ui-widget-header">14</div>
-    <div class="scroll-content-item ui-widget-header">15</div>
-    <div class="scroll-content-item ui-widget-header">16</div>
-    <div class="scroll-content-item ui-widget-header">17</div>
-    <div class="scroll-content-item ui-widget-header">18</div>
-    <div class="scroll-content-item ui-widget-header">19</div>
-    <div class="scroll-content-item ui-widget-header">20</div>
-  </div>
-  <div class="scroll-bar-wrap ui-widget-content ui-corner-bottom">
-    <div class="scroll-bar"></div>
-  </div>
+
+<p>Some scroll menu for customer to start a new order</p>
+
+<div class="col s4">
+	<div class="card #689f37 green">
+		<div class="card-content white-text">
+			<span class="card-title">My Account</span>
+			<p><%= current_user.customer.proper_name%><br/>
+				Username: <%= current_user.username %><br />
+				Phone: <%= number_to_phone current_user.customer.phone%><br />
+			  Email: <%= current_user.customer.email %><br />
+			  <%= link_to "[Edit My Account]", customer_path(current_user.customer) %>
+			  &nbsp;&nbsp;::&nbsp;&nbsp;
+			  <%= link_to "[Log out]", logout_path %>
+				</p>
+		</div>
+	</div>
 </div>
 
-<div class="col s5">
-				<div class="card #689f37 blue">
-					<div class="cart-content white-text">
-						<span class="card-title">&nbsp;<%= current_user.role %>: <%= current_user.username %></span>
-						<p>&nbsp;&nbsp;My Account<br />
-							&nbsp;&nbsp;Start a New Order <br/ >
-							&nbsp;&nbsp;View Orders <br />
-							&nbsp;&nbsp;Not <%= current_user.username %>? Log out</a></p>
-					</div>
-				</div>
-			</div>
+<div class="col s8">
+	<div class="card #689f37 white">
+		<div class="card-content black-text">
+			<span class="card-title black-text">My Orders</span>
+			<p>
+				<% if current_user.customer.orders.not_shipped.chronological.empty? %>
+					<i>No pending orders</i>
+				<% else %>
+					<% current_user.customer.orders.not_shipped.chronological.each do |order| %>
+						<table>
+							<thead>
+								<tr>
+									<th width="120">Date</th>
+									<th width="100">Amount</th>
+								</tr>
+							</thead>
+							<tbody>
+			          <td><%= link_to order.date.strftime('%m/%d/%y'), order_path(order) %></td>
+			          <td><%= number_to_currency order.grand_total %></td>
+			        </tbody>
+			      </table>
+			    <% end %>
+
+				<% end %><br />
+			  <%= link_to "[View All Orders]", orders_path %>
+				</p>
+		</div>
+	</div>
+</div>

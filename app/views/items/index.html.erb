@@ -24,6 +24,10 @@
   					<% end %>
   					<br /><p><%= link_to "[ Edit Item ]", edit_item_path(item)%></p>
   				<% end %>
+  				<div class="card-action">
+              <a href='add_cart_path(item.id)'>Add to Cart</a>
+              <a href='#'>Edit Item</a>
+          </div>
   			</div>
   		</div>
   	</div>

@@ -1,5 +1,6 @@
 <p>Some scroll menu for admin</p>
 
+
 <div class="col s4">
 	<div class="card #689f37 green">
 		<div class="card-content white-text">
@@ -41,7 +42,7 @@
 			    <% end %>
 
 				<% end %><br />
-			  <%= link_to "[Edit Orders]", orders_path %>
+			  <%= link_to "[View All Orders]", orders_path %>
 				</p>
 		</div>
 	</div>
@@ -81,7 +82,7 @@
 			      </table>
 			      <%= will_paginate Customer.active.alphabetical.paginate(:page => params[:page]).per_page(3), previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %><br />
 				<% end %>
-			  <%= link_to "[Edit Customers]", customers_path %>
+			  <%= link_to "[View All Customers]", customers_path %>
 		</div>
 	</div>
 </div>
@@ -114,7 +115,7 @@
 			      </table>
 			    <%= will_paginate Address.active.by_customer.by_recipient.paginate(:page => params[:page]).per_page(3), previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %><br />
 				<% end %><br />
-			  <%= link_to "[Edit Addresses]", addresses_path %>
+			  <%= link_to "[View All Addresses]", addresses_path %>
 				</p>
 		</div>
 	</div>

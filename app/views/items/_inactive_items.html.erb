@@ -18,7 +18,7 @@
 
         <!-- Item Details -->
           <p><b>Name: <%= item.name %></b><br/>
-            Units: <%= item.units_per_item %> <%= item.category == 'bread' ? 'loaf' : item.category %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Units: <%= item.units_per_item %> <%= item.category == 'bread' ? 'loaf' : item.category %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             Price: <%= number_to_currency item.current_price %></p>
 
         <!-- Item Actions depending on type of user -->
@@ -31,9 +31,11 @@
 
 
           <% if logged_in? && (current_user.role?(:admin)) %>
-            <%= link_to 'Change Price', customers_path %>
             <div class="card-action">
               <%= link_to "Edit Item", edit_item_path(item) %>
+            </div>
+            <div align="right">
+              <small><%= link_to '[ Change Price ]', customers_path %></small>
             </div>
           <% end %>
 

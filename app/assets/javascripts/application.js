@@ -29,7 +29,5 @@ $(function(){ $(document).foundation(); });
   $(".dropdown-button").dropdown();
 
 
-// Slider Scrollbar code
-
  
 

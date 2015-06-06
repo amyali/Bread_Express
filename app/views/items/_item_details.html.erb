@@ -1,16 +1,18 @@
-<div class="col s8">
+<div class="col s12">
 	<h3><%= @item.name %></h3>
 
-	<% unless @item.picture.nil? %>
-		<p><%= image_tag @item.picture %></p>
-	<% end %>
+	<% if @item.picture.nil? %>
+    <%= image_tag ('default.png') %>
+  <% else %>
+    <%= image_tag (@item.picture) %>
+  <% end %>
 
 	<p>
 	  <b>Description</b>: <%= @item.description %>
 	</p>
 
 	<p>
-	  <%= number_to_currency @item.current_price %>
+	  <b>Price</b>: <%= number_to_currency @item.current_price %>
 	</p>
 
 	<p>
@@ -24,8 +26,11 @@
 	<table class="hoverable center">
 		<tr><h4>Similar Items </h4></tr>
 		<% @similar_items.each do |item| %>
-			<tr><td><%= link_to item.name, item_path(item) %></td></tr>
+			<tr>
+				<td><%= link_to item.name, item_path(item) %></td>
+			</tr>
 		<% end %>
 	</table>
-</div>
 
+
+</div>

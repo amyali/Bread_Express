@@ -1,48 +1,5 @@
-<div class="container">
-	<% if @items.active.empty? || @items.active.nil? %>
-	<h5 class="center">No active items at this time</h5>
-	<% elsif !@items.active.nil? || !@items.active.empty? %>
-  <h5 class="center">Available Items</h5>
-  <% @items.active.each do |item| %>
-  	<div class="col s4">
-  		<div class="card #689f38">
-  			<div class="card-content black-text">
-  				<!-- Picture -->
-  				<p><% if item.picture.nil? %>
-  						<%= link_to((image_tag ('default.png')), item_path(item)) %>
-  					<% else %>
-  						<%= link_to((image_tag (item.picture)), item_path(item)) %>
-  					<% end %>
-  				</p>
-
-
-  			<!-- Item Details -->
-  				<p><b>Name: <%= item.name %></b><br/>
-  					Units: <%= item.units_per_item %> <%= item.category == 'bread' ? 'loaf' : item.category %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  					Price: <%= number_to_currency item.current_price %></p>
-
-  			<!-- Item Actions depending on type of user -->
-
-  				<% if logged_in? && current_user.role?(:customer) %>
-  					<div class="card-action">
-  						<%= link_to "Add to Cart", (add_cart_path(item.id)), :method => :patch %>
-  					</div>
-  				<% end %>
-
-
-  				<% if logged_in? && (current_user.role?(:admin)) %>
-  					<%= link_to 'Change Price', customers_path %>
-  					<div class="card-action">
-  						<%= link_to "Add to Cart", (add_cart_path(item.id)), :method => :patch %>
-  						<%= link_to "Edit Item", edit_item_path(item) %>
-  					</div>
-  				<% end %>
-
-  			</div>
-  		</div>
-  	</div>
-  <% end %>
-  <% end %>
-</div>
-
-
+	<%= render partial: "menu_items", locals: {model_name: "item", 
+	                                                         primary: "active_items", 
+	                                                         secondary: "inactive_items", 
+	                                                         sidebar: nil,
+	                                                       		image: "stacked.jpg"} %>

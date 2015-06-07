@@ -17,7 +17,26 @@
 	<div class="card #e8f5e9 green lighten-5">
 		<div class="card-content black-text">
 			<span class="card-title black-text">Shipping List</span>
-			<p>hello<br/><br/></p>
+			<p>
+			<% if @shipping_list.nil? || @shipping_list.empty? %>
+				<p><i class="small mdi-action-done"></i> All orders shipped</p>
+			<% else %>
+				<table class="hoverable">
+					<thead>
+						<tr>
+							<th>Recipient</th>
+							<th>Items</th>
+						</tr>
+					</thead>
+					<% @shipping_list.each do |order| %>
+						<tr>
+							<td><%= order.address.recipient %></td>
+							<td>come back to this</td>
+						</tr>
+					<% end %>
+				</table>
+			<% end %>
+		</p>
 		</div>
 	</div>
 </div>

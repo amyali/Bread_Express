@@ -22,7 +22,7 @@ class ItemPricesController < ApplicationController
     @item_price.start_date = Date.today
 
     if @item_price.save
-      redirect_to item_prices_path, notice: "Item price was successfully created."
+      redirect_to items_path, notice: "Item price was successfully created."
     else
       render action: 'new'
     end

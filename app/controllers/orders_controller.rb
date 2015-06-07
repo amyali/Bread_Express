@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
-
+  include BreadExpressHelpers::Cart
+  include BreadExpressHelpers::Shipping 
 
   # before_action :check_login
   before_action :set_order, only: [:show, :update, :destroy]
@@ -32,7 +33,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
 
     if @order.save
-
+      save_each_item_in_cart(@order)
       redirect_to @order, notice: "Thank you for ordering from Bread Express."
     else
       render action: 'new'
@@ -42,7 +43,6 @@ class OrdersController < ApplicationController
   def update
     if @order.update(order_params)
       redirect_to @order, notice: "Your order was revised in the system."
-      save_each_item_in_cart(@order.order_items.to_a)
     else
       render action: 'edit'
     end

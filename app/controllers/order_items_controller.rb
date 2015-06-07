@@ -19,7 +19,6 @@ class OrderItemsController < ApplicationController
 
   def create
   	@order_item = OrderItem.new(order_item_params)
-
   	if @order_item.save
   		redirect_to order_items_path, notice: "Order item was added to  the system."
   	else
@@ -28,7 +27,7 @@ class OrderItemsController < ApplicationController
   end
 
   def update
-  	if @order_item.update(order_item_params
+  	if @order_item.update(order_item_params)
   		redirect_to order_items_path, notice: "Order item was revised in the system."
   	else
   		render action: 'edit'

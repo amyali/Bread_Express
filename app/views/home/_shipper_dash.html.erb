@@ -4,8 +4,6 @@
 			<span class="card-title">My Account</span>
 			<p>
 				Username: <%= current_user.username %><br />
-				Phone: <br />
-			  Email: <br />
 			  <%= link_to "[Edit My Account]", customer_path(current_user) %>
 			  &nbsp;&nbsp;::&nbsp;&nbsp;
 			  <%= link_to "[Log out]", logout_path %>

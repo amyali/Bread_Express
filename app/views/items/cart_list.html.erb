@@ -1,7 +1,9 @@
 <div class="container">
 	<h3>Your Cart <i class="medium mdi-action-shopping-cart"></i></h3>
 
-
+	<% if @cart_list.nil? %>
+		Why is it nil? Why isn't it empty?
+	<% end %>
 
 	<% if @cart_list.nil? || @cart_list.empty? %>
 		<h5>Your cart is currently empty! Go to our <%= link_to "menu", items_path %> to add items to your cart.</h5>

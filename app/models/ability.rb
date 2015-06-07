@@ -21,6 +21,11 @@ class Ability
       can :update, User do |u|
         u.id == user.id
       end 
+
+      can :read, User do |u|
+        u.id = user.id
+      end
+
     elsif user.role? :shipper
     	can :index, Item
       can :show, Item

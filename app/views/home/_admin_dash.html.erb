@@ -54,7 +54,9 @@
 			    <% end %>
 
 				<% end %><br />
-			  <%= link_to "[View All Orders]", orders_path %>
+				<div align="right">
+			  	<%= link_to "[View All Orders]", orders_path %>
+			  </div>
 				</p>
 		</div>
 	</div>
@@ -65,7 +67,9 @@
 <div class="col s8">
 	<div class="card #c8e6c9 green lighten-4">
 		<div class="card-content black-text">
-			<span class="card-title black-text">Customers</span>
+			<span class="card-title black-text">Customers</span> 
+				&nbsp;&nbsp;
+				<small><%= link_to "[Create New Customer]", new_customer_path %></small>
 				<!-- If no active customers, say so, else show them -->
 				<% if Customer.active.alphabetical.empty? %>
   				<i>No active customers at this time.</i>
@@ -94,7 +98,9 @@
 			      </table>
 			      <%= will_paginate Customer.active.alphabetical.paginate(:page => params[:page]).per_page(3), previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %><br />
 				<% end %>
-			  <%= link_to "[View All Customers]", customers_path %>
+				<div align="right">
+			  	<%= link_to "[View All Customers]", customers_path %>
+			  </div>
 		</div>
 	</div>
 </div>
@@ -104,7 +110,9 @@
 <div class="col offset-s4 s8">
 	<div class="card #e8f5e9 green lighten-5">
 		<div class="card-content black-text">
-			<span class="card-title black-text">Addresses</span>
+			<span class="card-title black-text">Addresses</span> 
+				&nbsp;&nbsp;
+				<small><%= link_to "[Create New Address]", new_address_path %></small>
 			<p>
 				<% if Address.active.by_customer.by_recipient.empty? %>
   			<i>There are no active addresses at this time.</i>
@@ -127,7 +135,9 @@
 			      </table>
 			    <%= will_paginate Address.active.by_customer.by_recipient.paginate(:page => params[:page]).per_page(3), previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %><br />
 				<% end %><br />
-			  <%= link_to "[View All Addresses]", addresses_path %>
+				<div align="right">
+			  	<%= link_to "[View All Addresses]", addresses_path %>
+			  </div>
 				</p>
 		</div>
 	</div>

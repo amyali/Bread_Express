@@ -1,1 +1,9 @@
 <%= render partial: "address_list", locals: {addresses: @inactive_addresses, state: 'inactive'} %>
+
+<% if current_user.role?(:customer) %>
+  <div class="col s12 center">
+      <%= link_to(eval("new_address_path"), class: "btn waves-effect waves-light green") do %>
+      <!-- <i class="fa fa-plus"></i> -->
+      &nbsp;Add a New Address
+  <% end %>
+<% end %>

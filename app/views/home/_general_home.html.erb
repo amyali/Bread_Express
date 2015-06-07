@@ -33,6 +33,48 @@
 				<%= image_tag 'banner.jpg' %>
 			</div>
 			<div class="content">
+
+				<!-- Logged in users can see preview of up to 5 items on menu -->
+				<% if logged_in? %>
+					<div class="col s12">
+						<div class="card #c8e6c9 green lighten-4">
+							<div class="card-content black-text">
+								<span class="card-title black-text">Available Items</span>
+									<% if Item.alphabetical.empty? || Item.alphabetical.nil? %>
+										<i>No active items at this time. Create a <%= link_to "new item", new_item_path %></i>
+									<% elsif !Item.alphabetical.nil? || !Item.alphabetical.empty? %>
+										<table class="hoverable">
+											&nbsp;&nbsp;<%= link_to "[View All Items]", items_path %>
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Price</th>
+													<th>Units</th>
+													<th>&nbsp;</th>
+												</tr>
+											</thead>
+											<% Item.alphabetical.paginate(:page => params[:page]).per_page(5).each do |item| %>
+											<tr>
+												<td><%= link_to item.name, item_path(item) %></td>
+												<td><%= number_to_currency item.current_price %></td>
+												<td><%= item.units_per_item %> <%= item.category == 'bread' ? 'loaf' : item.category %></td>
+												<% if current_user.role?(:admin) %>
+												<td><%= link_to "Edit", edit_item_path(item) %></td>
+												<% end %>
+												<% if (current_user.role?(:customer) || current_user.role?(:admin)) %>
+												<td><%= link_to "Add to Cart", (add_cart_path(item.id)), :method => :patch %></td>
+												<% end %>
+											</tr>
+											<% end %>
+										</table>
+
+									<% end %>
+							</div>
+						</div>
+					</div>
+				<% end %>
+
+				<!-- Dash for each type of user -->
 				<% if logged_in? && current_user.role?(:customer) %>
 					<%= render :partial => "customer_dash" %>
 				<% end %>

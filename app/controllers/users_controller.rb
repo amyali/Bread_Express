@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @user = Customer.new
   end
 
   def index
@@ -14,11 +15,14 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def show
+    redirect_to users_path
+  end
+
   def create
     puts user_params
     @user = User.new(user_params)
     puts @user.username
-    puts @user.save
     if @user.save
       session[:user_id] = @user.id
       redirect_to home_path, notice: "Thank you for signing up!"
@@ -38,9 +42,11 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
+    @user.active = false
+    @user.save!
     flash[:notice] = "successfully removed #{@user.username} from Bread Express."
-    redirect_to users_url
+    redirect_to @user
+  end
 
   private
   def set_user

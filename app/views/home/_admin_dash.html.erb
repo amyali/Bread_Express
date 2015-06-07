@@ -5,6 +5,8 @@
 			<p>
 				Username: <%= current_user.username %><br />
 				Role: admin<br/>
+
+				<!-- BAKING AND SHIPPING LISTS -->
 			  	<ul class="collapsible" data-collapsible="accordion">
 				    <li>
 				      <div class="collapsible-header green lighten-4 black-text"><i class="mdi-maps-store-mall-directory black-text"></i>Baking List</div>
@@ -16,7 +18,9 @@
 				    </li>
 				    <li>
 				      <div class="collapsible-header green lighten-4 black-text"><i class="mdi-maps-local-shipping black-text"></i>Shipping List</div>
-				      <div class="collapsible-body green lighten-5 black-text"><p>Lorem ipsum dolor sit amet.</p></div>
+				      <div class="collapsible-body green lighten-5 black-text">
+				      	<%= render partial: "shipping_list" %>
+				      </div>
 				    </li>
 				  </ul>
 				<%= link_to "[Edit My Account]", customer_path(current_user) %>
@@ -38,7 +42,7 @@
 				<% if Order.not_shipped.chronological.empty? %>
 					<i>No pending orders</i>
 				<% else %>
-					<% current_user.customer.orders.not_shipped.chronological.each do |order| %>
+					<% Order.not_shipped.chronological.each do |order| %>
 						<table class="hoverable">
 							<thead>
 								<tr>

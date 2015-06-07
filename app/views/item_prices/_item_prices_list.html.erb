@@ -23,11 +23,12 @@
 
 
 	<br>
+	<%= link_to "Change Price", new_item_price_path %>
 
 
-	<%= link_to(eval("new_customer_path"), class: 'btn waves-effect waves-light amber') do %>
+	<%= link_to(eval("new_item_price_path"), class: 'btn waves-effect waves-light amber') do %>
         <!-- <i class="fa fa-pencil"></i> -->
-        &nbsp;<%= "NEw Customer" %>
+        &nbsp;<%= "Change Price" %>
       <% end %>
 
 	<%= will_paginate item_prices, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>

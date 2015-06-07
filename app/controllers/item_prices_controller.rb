@@ -19,16 +19,24 @@ class ItemPricesController < ApplicationController
 
   def create
   	@item_price = ItemPrice.new(item_price_params)
-  	respond_to do |format|
-  		if @item_price.save
-  			format.html { redirect_to item_path(@item_price.item), notice: 'Item price was successfully created.'}
-  			format.json { render action: 'show', status: :created, location: @item_price}
-  		else
-  			format.html {render action: 'new' }
-  			format.json { render json: @item_price.errors, status: :unprocessable_entity}
-  		end
-  	end
+
+    if @item_price.save
+      redirect_to item_prices_path, notice: "Item price was successfully created."
+    else
+      render action: 'new'
+    end
   end
+
+  # 	respond_to do |format|
+  # 		if @item_price.save
+  # 			format.html { redirect_to item_path(@item_price.item), notice: 'Item price was successfully created.'}
+  # 			format.json { render action: 'show', status: :created, location: @item_price}
+  # 		else
+  # 			format.html {render action: 'new' }
+  # 			format.json { render json: @item_price.errors, status: :unprocessable_entity}
+  # 		end
+  # 	end
+  # end
 
   def update
   	respond_to do |format|

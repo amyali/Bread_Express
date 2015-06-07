@@ -1,4 +1,36 @@
-<p>Some scroll menu for admin</p>
+<!-- Preview of menu - up to 5 items -  for admin -->
+
+<div class="col s12">
+	<div class="card #c8e6c9 green lighten-4">
+		<div class="card-content black-text">
+			<span class="card-title black-text">Available Items</span>
+				<% if Item.alphabetical.empty? || Item.alphabetical.nil? %>
+					<i>No active items at this time. Create a <%= link_to "new item", new_item_path %></i>
+				<% elsif !Item.alphabetical.nil? || !Item.alphabetical.empty? %>
+					<table class="hoverable">
+						&nbsp;&nbsp;<%= link_to "[View All Items]", items_path %>
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Price</th>
+								<th>Units</th>
+								<th>&nbsp;</th>
+							</tr>
+						</thead>
+						<% Item.alphabetical.paginate(:page => params[:page]).per_page(5).each do |item| %>
+						<tr>
+							<td><%= link_to item.name, item_path(item) %></td>
+							<td><%= number_to_currency item.current_price %></td>
+							<td><%= item.units_per_item %> <%= item.category == 'bread' ? 'loaf' : item.category %></td>
+							<td><%= link_to "Edit", edit_item_path(item) %></td>
+						</tr>
+						<% end %>
+					</table>
+
+				<% end %>
+		</div>
+	</div>
+</div>
 
 
 <div class="col s4">
@@ -27,7 +59,7 @@
 					<i>No pending orders</i>
 				<% else %>
 					<% current_user.customer.orders.not_shipped.chronological.each do |order| %>
-						<table>
+						<table class="hoverable">
 							<thead>
 								<tr>
 									<th width="120">Date</th>
@@ -58,7 +90,7 @@
 				<% if Customer.active.alphabetical.empty? %>
   				<i>No active customers at this time.</i>
 				<% else %>
-						<table>
+						<table class="hoverable">
 							<thead>
 								<tr>
 									<th>Name</th>
@@ -97,7 +129,7 @@
 				<% if Address.active.by_customer.by_recipient.empty? %>
   			<i>There are no active addresses at this time.</i>
 				<% else %>
-					<table>
+					<table class="hoverable">
 						<thead>
 							<tr>
 								<th>Customer</th>

@@ -1,0 +1,19 @@
+<b><%= category.upcase %></b>
+<% if @bake.nil? || @bake.empty? %>
+	<p><i class="small mdi-action-done"></i> All <%= category %> baked</p>
+<% else %>
+	<table class="hoverable">
+		<thead>
+			<tr>
+				<th>Item</th>
+				<th>Quantity</th>
+			</tr>
+		</thead>
+		<% @bake.each do |item, quant| %>
+			<tr>
+				<td><%= item %></td>
+				<td><%= quant %></td>
+			</tr>
+		<% end %>
+	</table>
+<% end %>

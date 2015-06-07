@@ -19,69 +19,10 @@
 	<div class="card #e8f5e9 green lighten-5">
 		<div class="card-content black-text">
 			<span class="card-title black-text">Baking List</span><br/>
-			<!-- Category: Bread -->
-			<b>BREAD</b>
-			<% if @bake_bread.nil? || @bake_bread.empty? %>
-				<p><i class="small mdi-action-done"></i> All bread baked</p>
-			<% else %>
-				<table class="hoverable">
-					<thead>
-						<tr>
-							<th>Item</th>
-							<th>Quantity</th>
-						</tr>
-					</thead>
-					<% @bake_bread.each do |item, quant| %>
-						<tr>
-							<td><%= item %></td>
-							<td><%= quant %></td>
-						</tr>
-					<% end %>
-				</table>
-			<% end %>
-
-			<!-- Category: Muffins -->
-			<b>MUFFINS</b>
-			<% if @bake_muffins.nil? || @bake_muffins.empty? %>
-				<p><i class="small mdi-action-done"></i> All muffins baked</p>
-			<% else %>
-				<table class="hoverable">
-					<thead>
-						<tr>
-							<th>Item</th>
-							<th>Quantity</th>
-						</tr>
-					</thead>
-					<% @bake_muffins.each do |item, quant| %>
-						<tr>
-							<td><%= item %></td>
-							<td><%= quant %></td>
-						</tr>
-					<% end %>
-				</table>
-			<% end %>
-
-			<!-- Category: Pastries -->
-			<b>PASTRIES</b>
-			<% if @bake_pastries.nil? || @bake_pastries.empty? %>
-				<p><i class="small mdi-action-done"></i> All pastries baked</p>
-			<% else %>
-				<table class="hoverable">
-					<thead>
-						<tr>
-							<th>Item</th>
-							<th>Quantity</th>
-						</tr>
-					</thead>
-					<% @bake_pastries.each do |item, quant| %>
-						<tr>
-							<td><%= item %></td>
-							<td><%= quant %></td>
-						</tr>
-					<% end %>
-				</table>
-			<% end %>
-
+			<!-- Baking List for all three categories -->
+			<%= render partial: "baking_list", locals: {category: "bread", bake: @bake_bread}%>
+			<%= render partial: "baking_list", locals: {category: "muffins", bake: @bake_muffins}%>
+			<%= render partial: "baking_list", locals: {category: "pastries", bake: @bake_pastries}%>
 		</div>
 	</div>
 </div>

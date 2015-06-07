@@ -4,7 +4,22 @@
 			<span class="card-title">My Account</span>
 			<p>
 				Username: <%= current_user.username %><br />
-			  <%= link_to "[Edit My Account]", customer_path(current_user) %>
+				Role: admin<br/>
+			  	<ul class="collapsible" data-collapsible="accordion">
+				    <li>
+				      <div class="collapsible-header green lighten-4 black-text"><i class="mdi-maps-store-mall-directory black-text"></i>Baking List</div>
+				      <div class="collapsible-body green lighten-5 black-text">
+				      	<%= render partial: "baking_list", locals: {category: "bread", bake: @bake_bread}%>
+								<%= render partial: "baking_list", locals: {category: "muffins", bake: @bake_muffins}%>
+								<%= render partial: "baking_list", locals: {category: "pastries", bake: @bake_pastries}%>
+							</div>
+				    </li>
+				    <li>
+				      <div class="collapsible-header green lighten-4 black-text"><i class="mdi-maps-local-shipping black-text"></i>Shipping List</div>
+				      <div class="collapsible-body green lighten-5 black-text"><p>Lorem ipsum dolor sit amet.</p></div>
+				    </li>
+				  </ul>
+				<%= link_to "[Edit My Account]", customer_path(current_user) %>
 			  &nbsp;&nbsp;::&nbsp;&nbsp;
 			  <%= link_to "[Log out]", logout_path %>
 				</p>
@@ -47,7 +62,7 @@
 <br/>
 
 <!-- CUSTOMER INFO -->
-<div class="col offset-s4 s8">
+<div class="col s8">
 	<div class="card #c8e6c9 green lighten-4">
 		<div class="card-content black-text">
 			<span class="card-title black-text">Customers</span>

@@ -23,13 +23,21 @@
 
 
 	<br>
-	<%= link_to "Change Price", new_item_price_path %>
+	<!-- Updates price but has some errors first? -->
+		<%= simple_form_for @item_price, html: { class: 'form-horizontal' } do |f| %>
+			<fieldset>
+				<legend>Change Item Price</legend>
 
-
-	<%= link_to(eval("new_item_price_path"), class: 'btn waves-effect waves-light amber') do %>
-        <!-- <i class="fa fa-pencil"></i> -->
-        &nbsp;<%= "Change Price" %>
-      <% end %>
+				<div class="form-inputs">
+					<%= f.input :price, label: "New Price" %>
+					<%= f.input :item_id, :as => :hidden, :input_html => { :value => @item.id } %>
+					<%= f.input :start_date, :as => :hidden, :input_html => { :value => Date.today } %>
+				</div><br/>
+				<div class="form-actions">
+					<%= f.submit "Change Price", class: 'btn light amber' %>
+				</div>
+			</fieldset>
+		<% end %>
 
 	<%= will_paginate item_prices, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
 <% end %>

@@ -11,7 +11,6 @@ class OrdersController < ApplicationController
       @pending_orders = Order.not_shipped.chronological.paginate(:page => params[:page]).per_page(5)
       @all_orders = Order.chronological.paginate(:page => params[:page]).per_page(5)
     else
-      create_cart
       @pending_orders = current_user.customer.orders.not_shipped.chronological.paginate(:page => params[:page]).per_page(5)
       @all_orders = current_user.customer.orders.chronological.paginate(:page => params[:page]).per_page(5)
     end 

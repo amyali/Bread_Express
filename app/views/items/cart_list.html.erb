@@ -1,31 +1,43 @@
 <div class="container">
 	<h3>Your Cart <i class="medium mdi-action-shopping-cart"></i></h3>
 
-	<% if @cart_list.nil? %>
-		Why is it nil? Why isn't it empty?
-	<% end %>
+	<% if @order_items.nil? || @order_items.empty? %>
+		<h5><br/>Your cart is currently empty! Go to our <%= link_to "menu", items_path %> to add items to your cart.</h5>
 
-	<% if @cart_list.nil? || @cart_list.empty? %>
-		<h5>Your cart is currently empty! Go to our <%= link_to "menu", items_path %> to add items to your cart.</h5>
 	<% else %>
 		<div class="row">
-		<table class="hoverable centered">
-	  <% @cart_list.each do |item| %>
-	    <div class="card blue-grey white">
-	      <div class="card-content black-text">
-	        <span class="card-title"><%= link_to item.name, item_path(item) %> </span>
-	          <br/>
-	          <% @cart_cost %><br />
+		<table class="hoverable">
+			<thead>
+				<tr>
+					<th>Item</th>
+					<th>Quantity</th>
+					<th>Subtotal</th>
+					<th>&nbsp;</th>
+				</tr>
+			</thead>
+	  	<% @order_items.each do |item| %>
+	  	<tr>
+	  		<td><%= link_to item.item.name, item_path(item.item) %></td>
+	  		<td><%= item.quantity %></td>
+	  		<td><%= number_to_currency item.subtotal%></td>
+	  		<td>
+	  			<%= link_to(remove_cart_path(item.item.id)) do %>
+	  			hi
+	  			<% end %></td>
+
 	      </div>
-	    <div class="card-action">
-	      <%= link_to "Remove from Cart", remove_cart_path(item.id), :method => :patch%>
-	      <%= link_to "Add to Cart", add_cart_path(item.id), :method => :patch %>
-	    </div>
-	  </div>
+	      <% end %>
 	  <% end %>
-	<% end %>
+	</table>
+	<div align="right">
+		<h5>Item Cost: <%= number_to_currency @item_cost %><br/>
+		Shipping Cost: <%= number_to_currency @shipping_cost %></h5>
+		<h4>Total Cost: <%= number_to_currency @total %></h4>
+	</div>
 </div>
 
 
 
 </div>
+
+

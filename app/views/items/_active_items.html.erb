@@ -25,13 +25,13 @@
 
           <% if logged_in? && current_user.role?(:customer) %>
             <div class="card-action">
-              <%= link_to "Add to Cart", (add_cart_path(item.id)), :method => :patch %>
+              <%= link_to "Add to Cart", (add_cart_path(item.id)), :method => :get %>
             </div>
           <% end %>
 
           <% if logged_in? && (current_user.role?(:admin)) %>
             <div class="card-action">
-              <%= link_to "Add to Cart", (add_cart_path(item.id)), :method => :patch %>
+              <%= link_to "Add to Cart", (add_cart_path(item.id)) %>
               <%= link_to "Edit Item", edit_item_path(item) %>
             </div>
           <% end %>

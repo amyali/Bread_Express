@@ -30,6 +30,7 @@ class OrdersController < ApplicationController
     @order_items = get_list_of_items_in_cart
     @shipping_cost = calculate_cart_shipping
     @total = calculate_cart_items_cost + calculate_cart_shipping
+    redirect_to home_path
 
   end
 
@@ -38,6 +39,7 @@ class OrdersController < ApplicationController
 
     if @order.save
       save_each_item_in_cart(@order)
+      @order.pay
       redirect_to @order, notice: "Thank you for ordering from Bread Express."
       destroy_cart
       create_cart

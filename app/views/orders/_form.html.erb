@@ -1,0 +1,36 @@
+<%= simple_form_for @order, html: { class: 'form-horizontal' } do |f| %>
+  <fieldset>
+
+<!-- Make current user customer and set date of order as today -->  <div class="col s6">
+    <%= f.input :customer_id, as: :hidden, input_html: { value: current_user.customer.id } %>
+    <%= f.input :date, as: :hidden, input_html: { value: Date.today } %>
+
+    <h5>Recipient &amp; Shipping Address</h5>
+    <%= f.association :address, collection: get_address_options(current_user), label: "Recipient" %>
+  </div>
+  <div class="col s6">
+
+    <br/><h5>Credit Cart Information</h5>
+    <%= f.input :credit_card_number %>
+    <div class="col s3">
+      <%= f.input :expiration_month %>
+    </div>
+    <div class="col s3">
+      <%= f.input :expiration_year %>
+    </div>
+  </div>
+
+    <br/><h5>Confirm Order Details</h5>
+    <%= render partial: "partials/cart_details" %>
+    <div align="right">
+      Item(s) Subtotal: <%= number_to_currency (@total-@shipping_cost) %><br/>
+      Shipping &amp; Handling: <%= number_to_currency @shipping_cost %><br/>
+      <b>Total Cost: <%= number_to_currency @total %></b>
+    </div>
+    <br/>
+
+    <div class="form-actions center">
+      <%= f.submit "Place your order", class: 'btn light amber' %>
+
+  </fieldset>
+<% end %>

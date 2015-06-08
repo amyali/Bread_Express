@@ -6,34 +6,15 @@
 
 	<% else %>
 		<div class="row">
-		<table class="hoverable">
-			<thead>
-				<tr>
-					<th>Item</th>
-					<th>Quantity</th>
-					<th>Subtotal</th>
-					<th>&nbsp;</th>
-				</tr>
-			</thead>
-	  	<% @order_items.each do |item| %>
-	  	<tr>
-	  		<td><%= link_to item.item.name, item_path(item.item) %></td>
-	  		<td><%= item.quantity %></td>
-	  		<td><%= number_to_currency item.subtotal%></td>
-	  		<td>
-	  			<%= link_to(remove_cart_path(item.item.id)) do %>
-	  			hi
-	  			<% end %></td>
-
-	      </div>
-	      <% end %>
+		<%= render partial: "partials/cart_list" %>
+		<div align="right">
+			<h5>Item Cost: <%= number_to_currency @items_cost %><br/>
+			Shipping Cost: <%= number_to_currency @shipping_cost %></h5>
+			<h4>Total Cost: <%= number_to_currency @total %></h4>
+		</div>
 	  <% end %>
-	</table>
-	<div align="right">
-		<h5>Item Cost: <%= number_to_currency @item_cost %><br/>
-		Shipping Cost: <%= number_to_currency @shipping_cost %></h5>
-		<h4>Total Cost: <%= number_to_currency @total %></h4>
-	</div>
+	
+
 </div>
 
 

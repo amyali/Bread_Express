@@ -50,8 +50,9 @@ class ItemsController < ApplicationController
   end
 
   def add_to_cart
-    add_item_to_cart(params[:id].to_i)
-    redirect_to cart_list_path, notice: "Item was added to your cart."
+    @item = Item.find(params[:id])
+    add_item_to_cart(@item.id)
+    redirect_to cart_list_path, notice: "#{@item.name} was added to your cart."
   end
 
   def remove_from_cart

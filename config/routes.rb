@@ -8,7 +8,7 @@ BreadExpress::Application.routes.draw do
   
   resources :items
   resources :item_prices
-  resources :order_items
+  # resources :order_items
   resources :users
   resources :sessions
   
@@ -31,8 +31,8 @@ BreadExpress::Application.routes.draw do
   root :to => 'home#home'  
   
   # Named routes
-  patch 'add_to_cart/:id' => 'items#add_to_cart', as: :add_cart
-  patch 'remove_item/:id' => 'items#remove_item_from_cart', as: :remove_cart
+  get 'add_to_cart/:id' => 'items#add_to_cart', as: :add_cart
+  get 'remove_item/:id' => 'items#remove_from_cart', as: :remove_cart
   get 'cart_list' => 'items#cart_list', as: :cart_list
 
 

@@ -60,6 +60,9 @@ class Ability
       end
 
       can :create, Address
+      can :cart_list, Item
+      can :add_to_cart, Item
+      can :remove_from_cart, Item
 
       can :read, Order do |o|
         my_orders = user.customer.orders.map(&:id)

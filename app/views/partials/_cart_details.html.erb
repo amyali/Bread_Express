@@ -1,18 +1,25 @@
-		<table class="hoverable">
+		<table class="hoverable centered">
 			<thead>
 				<tr>
 					<th>Item</th>
 					<th>Quantity</th>
 					<th>Subtotal</th>
 					<th>&nbsp;</th>
+					<th>&nbsp;</th>
 				</tr>
 			</thead>
 	  	<% @order_items.each do |item| %>
 	  	<tr>
-	  		<td><%= link_to item.item.name, item_path(item.item) %></td>
+	  		<td>
+	  			<%= link_to(add_cart_path(item.item)) do %>
+	  			<i class="tiny mdi-content-add"></i>
+	  			<% end %>
+					<%= link_to item.item.name, item_path(item.item) %></td>
 	  		<td><%= item.quantity %></td>
 	  		<td><%= number_to_currency item.subtotal%></td>
+	  		<!-- Change quantity of item in cart -->
 	  		<td>
+
 	  			<%= link_to(remove_cart_path(item.item.id)) do %>
 	  			<i class="small mdi-action-highlight-remove"></i>
 	  			<% end %></td>

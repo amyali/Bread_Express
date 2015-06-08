@@ -8,9 +8,9 @@
 		<div class="row">
 		<%= render partial: "partials/cart_details" %>
 		<div align="right">
-			<h5>Item Cost: <%= number_to_currency @items_cost %><br/>
-			Shipping Cost: <%= number_to_currency @shipping_cost %></h5>
-			<h4>Total Cost: <%= number_to_currency @total %></h4>
+			<h5>Item(s) Subtotal: <%= number_to_currency @items_cost %><br/>
+			Shipping &amp; Handling: <%= number_to_currency @shipping_cost %></h5>
+			<h5><b>Total Cost: <%= number_to_currency @total %></b></h5>
 		</div>
 	  <% end %>
 	

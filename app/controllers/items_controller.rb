@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   include BreadExpressHelpers::Cart
+  include BreadExpressHelpers::Shipping
   # before_action :check_login, except:[:show, :index]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   authorize_resource
@@ -49,20 +50,20 @@ class ItemsController < ApplicationController
   end
 
   def add_to_cart
-    @item = Item.find(params[:id])
-    add_item_to_cart(@item.id)
-    redirect_to :back, notice: "#{@item.name} was added to your cart."
+    add_item_to_cart(params[:id].to_i)
+    redirect_to cart_list_path, notice: "Item was added to your cart."
   end
 
   def remove_from_cart
-    @item = Item.find(params[:id])
-    remove_item_from_cart(item_id)
-    redirect_to :back
+    remove_item_from_cart(params[:id].to_i)
+    redirect_to cart_list_path
   end
 
-  def cart_list_and_costs
-    @cart_list = get_list_of_items_in_cart
-    @cart_cost = calculate_cart_items_cost
+  def cart_list
+    @order_items = get_list_of_items_in_cart
+    @shipping_cost = calculate_cart_shipping
+    @items_cost = calculate_cart_items_cost
+    @total = calculate_cart_items_cost + calculate_cart_shipping
   end
 
   private

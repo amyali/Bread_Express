@@ -37,7 +37,6 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-
     if @order.save
       save_each_item_in_cart(@order)
       @order.pay
@@ -70,11 +69,4 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:address_id)
   end
-
-
-
-
-
-
-
 end

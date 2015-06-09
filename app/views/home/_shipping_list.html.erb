@@ -6,6 +6,7 @@
 						<tr>
 							<th>Recipient</th>
 							<th>Items</th>
+							<th>Shipped</th>
 						</tr>
 					</thead>
 					<% @shipping_list.each do |order| %>
@@ -14,6 +15,7 @@
 							<% order.each do |item| %>
 								<td><%= item.name %> x <%= item.quantity %>
 							<% end %>
+							<td><i class="small mdi-toggle-check-box-outline-blank"></i></td>
 						</tr>
 					<% end %>
 				</table>

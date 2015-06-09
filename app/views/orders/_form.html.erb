@@ -1,7 +1,8 @@
 <%= simple_form_for @order, html: { class: 'form-horizontal' } do |f| %>
   <fieldset>
 
-<!-- Make current user customer and set date of order as today -->  <div class="col s6">
+<!-- Make current user customer and set date of order as today -->  
+  <div class="col s6">
     <%= f.input :customer_id, as: :hidden, input_html: { value: current_user.customer.id } %>
     <%= f.input :date, as: :hidden, input_html: { value: Date.today } %>
 
@@ -23,7 +24,7 @@
     <br/><h5>Confirm Order Details</h5>
     <%= render partial: "partials/cart_details" %>
     <div align="right">
-      Item(s) Subtotal: <%= number_to_currency (@total-@shipping_cost) %><br/>
+      Item(s) Subtotal: <%= number_to_currency @items_cost %><br/>
       Shipping &amp; Handling: <%= number_to_currency @shipping_cost %><br/>
       <b>Total Cost: <%= number_to_currency @total %></b>
     </div>

@@ -29,8 +29,9 @@ class OrdersController < ApplicationController
     @order = Order.new
     @order_items = get_list_of_items_in_cart
     @shipping_cost = calculate_cart_shipping
+    @items_cost = calculate_cart_items_cost
     @total = calculate_cart_items_cost + calculate_cart_shipping
-    redirect_to home_path
+    # redirect_to home_path
 
   end
 

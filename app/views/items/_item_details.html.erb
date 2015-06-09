@@ -1,10 +1,10 @@
 <div class="col s12">
 	<h3><%= @item.name %></h3>
 
-	<% if @item.picture.nil? %>
+	<% if @item.picture.blank? %>
     <%= image_tag ('default.png') %>
   <% else %>
-    <%= image_tag (@item.picture) %>
+    <%= image_tag (@item.photo_url) %>
   <% end %>
 
 	<p>

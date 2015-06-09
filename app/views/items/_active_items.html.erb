@@ -11,7 +11,7 @@
           <p><% if item.picture.blank? %>
               <%= link_to((image_tag ('default.png')), item_path(item)) %>
             <% else %>
-              <%= link_to((image_tag (item.photo_url)), item_path(item)) %>
+              <%= link_to((image_tag (item.picture_url)), item_path(item)) %>
             <% end %>
           </p>
 

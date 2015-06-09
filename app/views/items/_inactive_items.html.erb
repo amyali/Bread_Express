@@ -8,10 +8,10 @@
       <div class="card #689f38">
         <div class="card-content black-text">
           <!-- Picture -->
-          <p><% if item.picture.nil? %>
+          <p><% if item.picture.blank? %>
               <%= link_to((image_tag ('default.png')), item_path(item)) %>
             <% else %>
-              <%= link_to((image_tag (item.picture)), item_path(item)) %>
+              <%= link_to((image_tag (item.picture_url)), item_path(item)) %>
             <% end %>
           </p>
 

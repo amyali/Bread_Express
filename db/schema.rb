@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 20150609060632) do
     t.boolean  "active",         default: true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "photo"
+    # t.string   "photo"
   end
 
   create_table "order_items", force: true do |t|

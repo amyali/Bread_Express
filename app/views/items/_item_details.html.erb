@@ -4,7 +4,7 @@
 	<% if @item.picture.blank? %>
     <%= image_tag ('default.png') %>
   <% else %>
-    <%= image_tag (@item.photo_url) %>
+    <%= image_tag (@item.picture_url) %>
   <% end %>
 
 	<p>

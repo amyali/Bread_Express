@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20141223145336) do
   create_table "items", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.string   "picture"
+    t.string   "picture",          default: 'default.png'
     t.string   "category"
     t.integer  "units_per_item"
     t.float    "weight"

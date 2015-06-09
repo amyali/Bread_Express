@@ -1,5 +1,21 @@
 <% if item_prices.nil? || item_prices.empty? %>
 	<h4>No item prices at this time.</h4>
+		<%= simple_form_for @item_price, html: { class: 'form-horizontal' } do |f| %>
+			<fieldset>
+				<legend>Add Price</legend>
+
+				<div class="form-inputs">
+					<%= f.input :price, label: "New Price" %>
+					<%= f.input :item_id, :as => :hidden, :input_html => { :value => @item.id } %>
+					<%= f.input :start_date, :as => :hidden, :input_html => { :value => Date.today } %>
+				</div><br/>
+				<div class="form-actions">
+					<%= f.submit "Add Price", class: 'btn light amber' %>
+				</div>
+			</fieldset>
+		<% end %>
+
+		
 <% else %>
 	<h4>Price History</h4>
 	<table class="hoverable center">

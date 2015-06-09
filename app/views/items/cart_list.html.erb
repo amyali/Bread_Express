@@ -18,14 +18,14 @@
 			Shipping &amp; Handling: <%= number_to_currency @shipping_cost %></h5>
 			<h5><b>Total Cost: <%= number_to_currency @total %></b></h5>
 		</div>
-	  <% end %>
+	  
 
 	  <div class="center">
 		  <%= link_to(eval("new_order_path"), class: 'btn waves-effect waves-light amber') do %>
 		  Proceed to Checkout
 	    <% end %>
 	  </div>
-
+	<% end %>
 </div>
 
 

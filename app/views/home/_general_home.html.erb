@@ -67,7 +67,10 @@
 												<td><%= link_to "Edit", edit_item_path(item) %></td>
 												<% end %>
 												<% if (current_user.role?(:customer) || current_user.role?(:admin)) %>
-												<td><%= link_to "Add to Cart", (add_cart_path(item.id)), :method => :get %></td>
+												<td><%= link_to(add_cart_path(item.id)) do %>
+														<i class="small mdi-action-add-shopping-cart"></i>
+													<% end %>
+												</td>
 												<% end %>
 											</tr>
 											<% end %>

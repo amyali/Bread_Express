@@ -34,6 +34,7 @@ BreadExpress::Application.routes.draw do
   get 'add_to_cart/:id' => 'items#add_to_cart', as: :add_cart
   get 'remove_item/:id' => 'items#remove_from_cart', as: :remove_cart
   get 'cart_list' => 'items#cart_list', as: :cart_list
+  get 'clear_cart' => 'items#clear_cart_content', as: :clear_cart
 
 
   

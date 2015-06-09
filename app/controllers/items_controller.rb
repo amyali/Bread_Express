@@ -60,6 +60,11 @@ class ItemsController < ApplicationController
     redirect_to cart_list_path
   end
 
+  def clear_cart_content
+    clear_cart
+    redirect_to cart_list_path
+  end
+
   def cart_list
     @order_items = get_list_of_items_in_cart
     @shipping_cost = calculate_cart_shipping

@@ -11,7 +11,9 @@
 					<% @shipping_list.each do |order| %>
 						<tr>
 							<td><%= order.address.recipient %></td>
-							<td>come back to this</td>
+							<% order.each do |item| %>
+								<td><%= item.name %> x <%= item.quantity %>
+							<% end %>
 						</tr>
 					<% end %>
 				</table>

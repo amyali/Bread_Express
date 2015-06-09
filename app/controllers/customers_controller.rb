@@ -30,8 +30,8 @@ class CustomersController < ApplicationController
   def create
     @customer = Customer.new(customer_params)
     if @customer.save
-      session[:user_id] = @customer.user.id
-      redirect_to @customer, notice: "#{@customer.proper_name} was added to the system."
+      # session[:user_id] = @customer.user.id
+      redirect_to home_path, notice: "#{@customer.proper_name} was added to the system."
     else
       render action: 'new'
     end

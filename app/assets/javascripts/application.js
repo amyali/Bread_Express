@@ -23,15 +23,8 @@ $(function(){
   $(function(){
     $(".dropdown-button").dropdown({ constrain_width: false });
     $('select').material_select();
-    $(".dropdown-button").dropdown();
   });
 });
-
-//Datepicker
-$('.datepicker').pickadate({
-    selectMonths: true, // Creates a dropdown to control month
-    selectYears: 15 // Creates a dropdown of 15 years to control year
-  });
 
 
 
